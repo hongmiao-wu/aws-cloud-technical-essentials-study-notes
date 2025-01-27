@@ -1,4 +1,3 @@
-
 - [Module 1: AWS Overview and Security](#module-1-aws-overview-and-security)
   - [1. What is the cloud?](#1-what-is-the-cloud)
   - [2. What is cloud computing?](#2-what-is-cloud-computing)
@@ -10,6 +9,13 @@
   - [8. What is IAM?](#8-what-is-iam)
   - [9. What is the principle of the least privilege?](#9-what-is-the-principle-of-the-least-privilege)
   - [10. What is IdP?](#10-what-is-idp)
+  - [Lab 1: Introduction to IAM](#lab-1-introduction-to-iam)
+  - [11. What is an IAM role?](#11-what-is-an-iam-role)
+  - [12. IAM role vs. IAM user](#12-iam-role-vs-iam-user)
+  - [13. What is Amazon S3?](#13-what-is-amazon-s3)
+  - [14. What is Amazon EC2?](#14-what-is-amazon-ec2)
+  - [15. What is EC2 instance?](#15-what-is-ec2-instance)
+  - [16. What is AMI?](#16-what-is-ami)
 
 ## Module 1: AWS Overview and Security
 ### 1. What is the cloud?
@@ -48,6 +54,13 @@ A few examples of Region codes:
 
 - us-east-1: the first Region created in the east of the US.
 - ap-northeast-1: the first Region created in the northeast of Asia Pacific.
+
+Consider four main aspects when deciding which AWS Region:
+- Latency: if your application is sensitive to latency, choose a Region that is close to your user base. 
+- Price: prices may vary from one Region to another. 
+- Service availability: Some services may not be available in some Regions. 
+- Data compliance: enterprise companies often need to comply with regulations that require customer data to be stored in a specific geographic territory. 
+
 
 More at [AWS Global Infrastructure](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/)
 
@@ -111,3 +124,41 @@ Least privilege is a standard security principle that advises you to grant only 
 ### 10. What is IdP?
 
 An Identity Provider (IdP) is a centralized system that manages user identities and controls access to multiple services. It allows employees to use a single set of credentials to log in to different systems, like AWS, Google Workspace, or other platforms. With an IdP, you can easily manage permissions, simplify user updates, and improve security by having one source of truth for all identities in your organization.
+
+### Lab 1: Introduction to IAM
+
+This lab guides you step by step through the Amazon IAM console to:
+
+- Explore IAM Users and Groups
+- Inspect IAM policies applied to groups
+- Add users to groups and explore group permissions
+- Locate and use the IAM sign-in URL
+- Experiment with policies and service access
+
+### 11. What is an IAM role?
+
+An IAM role is an IAM identity that you can create in your account that has specific permissions. 
+
+More at [IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)
+
+### 12. IAM role vs. IAM user
+
+An IAM role is similar to an IAM user, instead of being uniquely associated with one person, a role is intended to be assumable by anyone who needs it. Also, a role does not have standard long-term credentials such as a password or access keys associated with it.
+
+### 13. What is Amazon S3?
+
+Amazon Simple Storage Service (Amazon S3) is an **object storage service** that stores data as objects within buckets. 
+
+### 14. What is Amazon EC2?
+
+Amazon Elastic Compute Cloud (Amazon EC2) provides on-demand, scalable **computing capacity** in the Amazon Web Services (AWS) Cloud.
+
+### 15. What is EC2 instance?
+
+An EC2 instance is a virtual server in the AWS Cloud. 
+
+![ec2-instance](/resources/instance-types.png)
+
+### 16. What is AMI?
+
+Amazon Machine Images (AMIs): Preconfigured templates for your instances that package the components you need for your server (including the operating system and additional software).
