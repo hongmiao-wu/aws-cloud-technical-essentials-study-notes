@@ -16,8 +16,25 @@
   - [14. What is Amazon EC2?](#14-what-is-amazon-ec2)
   - [15. What is EC2 instance?](#15-what-is-ec2-instance)
   - [16. What is AMI?](#16-what-is-ami)
+  - [17. What is VPC?](#17-what-is-vpc)
+- [Module 2: Compute and Networking](#module-2-compute-and-networking)
+  - [18. Servers and clients](#18-servers-and-clients)
+  - [19. Virtual machines in AWS](#19-virtual-machines-in-aws)
+  - [20. What is the relationship between AMIs and EC2 Instances?](#20-what-is-the-relationship-between-amis-and-ec2-instances)
+  - [21. What makes up an EC2 instance?](#21-what-makes-up-an-ec2-instance)
+  - [22. EC2 instance lifecycle/actions (TODO: needs more clarification)](#22-ec2-instance-lifecycleactions-todo-needs-more-clarification)
+  - [23. What is a container?](#23-what-is-a-container)
+  - [24. What is Docker?](#24-what-is-docker)
+  - [25. Container vs. Virutal Machine](#25-container-vs-virutal-machine)
+  - [26. Amazon container orchestration services ECS \& EKS (TODO)](#26-amazon-container-orchestration-services-ecs--eks-todo)
+  - [27. What is Kubernetes？](#27-what-is-kubernetes)
+  - [28. What is serverless?](#28-what-is-serverless)
+  - [29. AWS Fargate and AWS Lambda](#29-aws-fargate-and-aws-lambda)
+  - [30. HOW Lambda works?](#30-how-lambda-works)
+  - [31. What is networking?](#31-what-is-networking)
 
 ## Module 1: AWS Overview and Security
+
 ### 1. What is the cloud?
 The cloud is a global network of remote servers designed to store and process data for other devices and computers. This architecture allows people to save their files and applications in the cloud. They can access them online, rather than relying on local storage.
 
@@ -162,3 +179,108 @@ An EC2 instance is a virtual server in the AWS Cloud.
 ### 16. What is AMI?
 
 Amazon Machine Images (AMIs): Preconfigured templates for your instances that package the components you need for your server (including the operating system and additional software).
+
+### 17. What is VPC?
+
+A Virtual Private Cloud (VPC) is a virtual network that closely resembles a traditional network that you'd operate in your own data center. 
+
+![vpc](/resources/VPC.png)
+
+## Module 2: Compute and Networking
+
+### 18. Servers and clients
+
+A client being a person or computer that sends a request, and a server handling the requests is a computer, or collection of computers, connected to the internet serving websites to internet users. 
+
+These servers power your application by providing CPU, memory, and networking capacity to process users’ requests and transform them into responses.
+
+### 19. Virtual machines in AWS
+
+At a fundamental level, there are three types of compute options: virtual machines, container services, and serverless.
+
+A virtual machine can often be the easiest compute option in AWS to understand. This is because a virtual machine emulates a physical server and allows you to install an HTTP server to run your applications.
+
+In AWS, these virtual machines are called Amazon Elastic Compute Cloud or **Amazon EC2**. 
+
+More at [AWS: compute services whitepaper](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/compute-services.html)
+
+### 20. What is the relationship between AMIs and EC2 Instances?
+EC2 instances are live instantiations of what is defined in an AMI, much like a class and an Object.
+
+### 21. What makes up an EC2 instance?
+EC2 instances are a combination of virtual processors (vCPUs), memory, network, and in some cases, instance storage and graphics processing units (GPUs). 
+
+*Note: While EC2 instances are typically reliable, two is better than one, and three is better than two.* 
+
+### 22. EC2 instance lifecycle/actions (TODO: needs more clarification)
+- pending: when you launch an instance, it enters the pending state, the billing has not started.  
+- running: it's ready to use. This is also the stage where billing begins. 
+- reboot: the instance remains on the same host computer and maintains its public and private IP address, and any data on its instance store. *It’s different than performing a stop action and then a start action*
+- stop:
+- start:
+- terminate: when you terminate an instance, the instance store are erased, and you lose both the public IP address and private IP address of the machine. 
+- stop-hibernate:
+![instance-lifecycle](/resources/instance_lifecycle.png)
+
+More at: [Amazon EC2 instance state changes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
+
+### 23. What is a container?
+A container is a standardized unit that packages up your code and all of its dependencies. This package is designed to run reliably on any platform, because the container creates its own independent environment. 
+
+### 24. What is Docker?
+Docker is a popular tool that simplifies the management of the entire operating system stack needed for container isolation, including networking and storage.
+
+### 25. Container vs. Virutal Machine
+Containers are an abstraction at the app layer that packages code and dependencies together. 
+Multiple containers can run on the same machine and share the OS kernel with other containers, each running as isolated processes in user space. 
+
+Virtual machines (VMs) are an abstraction of physical hardware turning one server into many servers. 
+The hypervisor allows multiple VMs to run on a single machine. 
+
+Containers take up less space than VMs (typically tens of MBs vs. tens of GBs) and fast to boot.
+
+More at: [Docker: what is a container?](https://www.docker.com/resources/what-container/)
+
+### 26. Amazon container orchestration services ECS & EKS (TODO)
+In AWS, containers run on EC2 instances. Most companies and organizations run many containers on many EC2 instances across several Availability Zones. 
+
+If you’re trying to manage your compute at a large scale, you need to know:
+
+- How to place your containers on your instances.
+
+- What happens if your container fails.
+
+- What happens if your instance fails.
+
+- How to monitor deployments of your containers.
+
+AWS offers two container orchestration services: Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS)
+
+### 27. What is Kubernetes？
+Kubernetes is a portable, extensible, open source platform for managing containerized workloads and services. 
+
+### 28. What is serverless?
+Serverless is a cloud-native development model that allows developers to build and run applications without having to manage servers.
+
+There are still servers in serverless, but they are abstracted away from app development. A cloud provider handles the routine work of provisioning, maintaining, and scaling the server infrastructure. Developers can simply package their code in containers for deployment.
+
+More at: [Red Hat: What is serverless?](https://www.redhat.com/en/topics/cloud-native-apps/what-is-serverless)
+
+### 29. AWS Fargate and AWS Lambda
+AWS Fargate abstracts the EC2 instance so you’re not required to manage it. However, with AWS Fargate, you can use all the same ECS primitives, APIs, and AWS integrations.
+
+AWS Lambda lets you run code without provisioning or managing servers or containers. 
+
+### 30. HOW Lambda works?
+There are three primary components of a Lambda function: the trigger, code, and configuration.
+
+The code is source code, that describes what the Lambda function should run. 
+
+The configuration of a Lambda function consists of information that describes how the function should run. In the configuration, you specify network placement, environment variables, memory, invocation type, permission sets, and other configurations. 
+
+Triggers describe when the Lambda function should run. 
+
+More at: [Configuring AWS Lambda functions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html)
+![AWS-lambda](/resources/aws-lambda.png)
+
+### 31. What is networking?
